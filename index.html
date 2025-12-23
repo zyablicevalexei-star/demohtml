@@ -126,6 +126,34 @@
             margin-top: 12px;
             font-size: 0.85rem;
         }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid #fbbf24;
+            background: rgba(30, 27, 75, 0.7);
+            color: #f3f4f6;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+        }
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+            font-style: italic;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -151,10 +179,21 @@
             </div>
         </nav>
 
+        <!-- Поиск -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Например: ink game" 
+                autocomplete="off"
+            >
+        </div>
+
         <!-- Скрипты -->
-        <section class="max-w-4xl mx-auto space-y-8">
+        <section id="scripts-container" class="max-w-4xl mx-auto space-y-8">
             <!-- Fly Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-red-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-red-900/50 overflow-hidden shadow-2xl card-glow" data-game="fly">
                 <div class="p-6 border-b border-red-800/30 bg-gradient-to-r from-red-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-sleigh text-red-400 text-2xl"></i>
@@ -197,7 +236,7 @@
             </div>
 
             <!-- Ink Game Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-900/50 overflow-hidden shadow-2xl card-glow" data-game="ink game inkgame">
                 <div class="p-6 border-b border-purple-800/30 bg-gradient-to-r from-purple-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-tint text-purple-400 text-2xl"></i>
@@ -234,7 +273,7 @@
             </div>
 
             <!-- 99 Nights in the Forest Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-green-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-green-900/50 overflow-hidden shadow-2xl card-glow" data-game="99 nights in the forest forest nights">
                 <div class="p-6 border-b border-green-800/30 bg-gradient-to-r from-green-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-tree text-green-400 text-2xl"></i>
@@ -271,7 +310,7 @@
             </div>
 
             <!-- Fling Things and People Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-yellow-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-yellow-900/50 overflow-hidden shadow-2xl card-glow" data-game="fling things and people fling">
                 <div class="p-6 border-b border-yellow-800/30 bg-gradient-to-r from-yellow-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-hand-paper text-yellow-400 text-2xl"></i>
@@ -307,8 +346,45 @@
                 </div>
             </div>
 
+            <!-- Ultimate Fling GUI Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-teal-900/50 overflow-hidden shadow-2xl card-glow" data-game="ultimate fling gui fling">
+                <div class="p-6 border-b border-teal-800/30 bg-gradient-to-r from-teal-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-rocket text-teal-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Ultimate Fling GUI</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Улучшенная версия скрипта Fling с графическим интерфейсом и дополнительными функциями.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-teal-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-teal-500/30">
+<code id="ultimate-fling-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/K1LAS1K/Ultimate-Fling-GUI/main/flingscript.lua"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-ultimate-fling-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-teal-700 hover:bg-teal-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Doors Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 overflow-hidden shadow-2xl card-glow" data-game="doors">
                 <div class="p-6 border-b border-blue-800/30 bg-gradient-to-r from-blue-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-door-open text-blue-400 text-2xl"></i>
@@ -348,7 +424,7 @@
             </div>
 
             <!-- Infinity Yield Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-indigo-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-indigo-900/50 overflow-hidden shadow-2xl card-glow" data-game="infinity yield infinite yield inf yield">
                 <div class="p-6 border-b border-indigo-800/30 bg-gradient-to-r from-indigo-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-infinity text-indigo-400 text-2xl"></i>
@@ -385,7 +461,7 @@
             </div>
 
             <!-- Plane Crazy Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-orange-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-orange-900/50 overflow-hidden shadow-2xl card-glow" data-game="plane crazy hammer plane">
                 <div class="p-6 border-b border-orange-800/30 bg-gradient-to-r from-orange-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-hammer text-orange-400 text-2xl"></i>
@@ -422,7 +498,7 @@
             </div>
 
             <!-- Guess the Meme Script -->
-            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-pink-900/50 overflow-hidden shadow-2xl card-glow">
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-pink-900/50 overflow-hidden shadow-2xl card-glow" data-game="guess the meme meme inf money">
                 <div class="p-6 border-b border-pink-800/30 bg-gradient-to-r from-pink-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fas fa-comment-dots text-pink-400 text-2xl"></i>
@@ -635,6 +711,57 @@
             });
         }
 
+        // === ПОИСК ПО ИГРАМ ===
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            const scriptCards = document.querySelectorAll('.script-card');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query === '') {
+                    // Показываем все скрипты
+                    scriptCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                let hasResults = false;
+                
+                scriptCards.forEach(card => {
+                    const keywords = card.getAttribute('data-game').toLowerCase();
+                    if (keywords.includes(query)) {
+                        card.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Показываем сообщение "Ничего не найдено"
+                const scriptsContainer = document.getElementById('scripts-container');
+                const existingNoResults = scriptsContainer.querySelector('.no-results');
+                
+                if (!hasResults) {
+                    if (!existingNoResults) {
+                        const noResultsDiv = document.createElement('div');
+                        noResultsDiv.className = 'no-results';
+                        noResultsDiv.innerHTML = `
+                            <i class="fas fa-search fa-2x mb-3 text-gray-500"></i>
+                            <p>Скрипты для "<strong>${this.value}</strong>" не найдены</p>
+                            <p class="mt-2 text-sm">Попробуйте поискать: <span class="text-yellow-400 cursor-pointer hover:underline" onclick="document.getElementById('search-input').value='ink game'; document.getElementById('search-input').dispatchEvent(new Event('input'))">ink game</span></p>
+                        `;
+                        scriptsContainer.appendChild(noResultsDiv);
+                    }
+                } else {
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                }
+            });
+        }
+
         // === НАВИГАЦИЯ ===
         function createSnowflakes() {
             const snowflakes = document.getElementById('snowflakes');
@@ -691,10 +818,14 @@
         setupCopyButton('ink-code', 'copy-ink-btn');
         setupCopyButton('forest-code', 'copy-forest-btn');
         setupCopyButton('fling-code', 'copy-fling-btn');
+        setupCopyButton('ultimate-fling-code', 'copy-ultimate-fling-btn');
         setupCopyButton('doors-code', 'copy-doors-btn');
         setupCopyButton('infinity-code', 'copy-infinity-btn');
         setupCopyButton('plane-code', 'copy-plane-btn');
         setupCopyButton('meme-code', 'copy-meme-btn');
+
+        // Инициализация поиска
+        setupSearch();
 
         createSnowflakes();
     </script>

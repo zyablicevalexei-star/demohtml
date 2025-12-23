@@ -118,6 +118,14 @@
             opacity: 0.6;
             pointer-events: none;
         }
+        .warning {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid #ef4444;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -144,7 +152,8 @@
         </nav>
 
         <!-- Скрипты -->
-        <section class="max-w-4xl mx-auto">
+        <section class="max-w-4xl mx-auto space-y-8">
+            <!-- Fly Script -->
             <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-red-900/50 overflow-hidden shadow-2xl card-glow">
                 <div class="p-6 border-b border-red-800/30 bg-gradient-to-r from-red-900/20 to-transparent">
                     <div class="flex items-center gap-3 mb-2">
@@ -155,20 +164,18 @@
                         Включает возможность полета в любой игре Roblox. Работает на большинстве исполнителей.
                     </p>
                 </div>
-
                 <div class="p-6">
                     <div class="relative">
                         <pre class="text-green-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-green-500/30">
 <code id="fly-code">loadstring(game:HttpGet("https://obj.wearedevs.net/2/scripts/Fly.lua"))()</code>
                         </pre>
                         <button 
-                            id="copy-btn" 
+                            id="copy-fly-btn" 
                             class="copy-btn absolute top-3 right-3 bg-red-700 hover:bg-red-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
                         >
                             <i class="fas fa-copy"></i> Копировать
                         </button>
                     </div>
-
                     <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
                         <span class="flex items-center gap-1">
                             <i class="fas fa-shield-alt text-green-400"></i> Безопасный
@@ -180,13 +187,276 @@
                             <i class="fas fa-sync text-blue-400"></i> Обновлено: 20 декабря 2025
                         </span>
                     </div>
-
-                    <!-- Кнопка лайка -->
                     <div class="mt-6 flex justify-center">
                         <button id="like-btn" class="like-btn flex items-center gap-2 text-2xl p-3 rounded-full hover:bg-gray-800/50 transition-all">
                             <i class="far fa-heart"></i>
                             <span id="like-count" class="text-sm font-bold">0</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ink Game Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-purple-800/30 bg-gradient-to-r from-purple-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-tint text-purple-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Ink Game Script</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Полный скрипт для игры Ink Game с функциями: Auto Farm, Auto Kill, Esp, Aimbot и многое другое.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-cyan-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-cyan-500/30">
+<code id="ink-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()</code>
+                        </pre>
+                        <button 
+                            id="copy-ink-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-purple-700 hover:bg-purple-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 99 Nights in the Forest Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-green-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-green-800/30 bg-gradient-to-r from-green-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-tree text-green-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🎄] 99 Nights in the Forest 🔦</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Автоматический фарм, ESP, Auto Collect, Anti-AFK и другие функции для прохождения игры.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-emerald-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-emerald-500/30">
+<code id="forest-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()</code>
+                        </pre>
+                        <button 
+                            id="copy-forest-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-green-700 hover:bg-green-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fling Things and People Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-yellow-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-yellow-800/30 bg-gradient-to-r from-yellow-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-hand-paper text-yellow-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Fling Things and People</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Забавный скрипт для запуска игроков и объектов в воздух. Работает на большинстве серверов.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-amber-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-amber-500/30">
+<code id="fling-code">loadstring(game:HttpGet('https://raw.githubusercontent.com/Brovaky/Friendly/refs/heads/main/Friendly'))()</code>
+                        </pre>
+                        <button 
+                            id="copy-fling-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-yellow-700 hover:bg-yellow-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doors Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-blue-800/30 bg-gradient-to-r from-blue-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-door-open text-blue-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Doors Script</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Мощный скрипт для игры Doors с Auto Farm, ESP, и обходом некоторых античитов.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-blue-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-blue-500/30">
+<code id="doors-code">loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/87ee948d4e7d8808"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-doors-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-blue-700 hover:bg-blue-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="warning">
+                        ⚠️ <strong>Внимание:</strong> Этот скрипт загружается с Panda Development. Убедитесь, что ваш эксплоит разрешает внешние соединения.
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infinity Yield Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-indigo-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-indigo-800/30 bg-gradient-to-r from-indigo-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-infinity text-indigo-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Infinity Yield</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Один из самых мощных и функциональных читов для Roblox с сотнями команд и возможностей.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-indigo-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-indigo-500/30">
+<code id="infinity-code">loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()</code>
+                        </pre>
+                        <button 
+                            id="copy-infinity-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-indigo-700 hover:bg-indigo-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plane Crazy Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-orange-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-orange-800/30 bg-gradient-to-r from-orange-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-hammer text-orange-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🔨] Plane Crazy [UPDATE]</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Улучшенный чит для игры Plane Crazy с возможностью фарма, управления самолётом и многое другое.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-orange-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-orange-500/30">
+<code id="plane-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/za1kL/Plane-Crazy/refs/heads/main/Refz%20V1.0.6"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-plane-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-orange-700 hover:bg-orange-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guess the Meme Script -->
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-pink-900/50 overflow-hidden shadow-2xl card-glow">
+                <div class="p-6 border-b border-pink-800/30 bg-gradient-to-r from-pink-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-comment-dots text-pink-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🔊] Guess the Meme - Inf Money</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Скрипт с неограниченными деньгами для игры Guess the Meme. Покупайте любые предметы без ограничений!
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-pink-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-pink-500/30">
+<code id="meme-code">loadstring(game:HttpGet("https://rawscripts.net/raw/Guess-the-Meme-Inf-money-77653"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-meme-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-pink-700 hover:bg-pink-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="warning">
+                        ⚠️ <strong>Внимание:</strong> Этот скрипт загружается с RawScripts.net. Убедитесь, что ваш эксплоит может подключаться к этому домену.
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-blue-400"></i> Обновлено: 24 декабря 2025
+                        </span>
                     </div>
                 </div>
             </div>
@@ -290,7 +560,6 @@
         const likeIcon = likeBtn.querySelector('i');
         let isLoading = false;
 
-        // Загрузка лайков
         async function loadLikes() {
             try {
                 const response = await fetch(API_URL, {
@@ -308,14 +577,12 @@
             }
         }
 
-        // Отправка лайка
         async function sendLike() {
             if (isLoading) return;
             isLoading = true;
             likeBtn.classList.add('like-loading');
             
             try {
-                // Сначала получаем текущие данные
                 const response = await fetch(API_URL, {
                     method: 'GET',
                     headers: {
@@ -326,7 +593,6 @@
                 const data = await response.json();
                 const newLikes = (data.record.likes || 0) + 1;
                 
-                // Обновляем
                 await fetch(API_URL, {
                     method: 'PUT',
                     headers: {
@@ -348,11 +614,28 @@
             }
         }
 
-        // Инициализация
+        // Инициализация лайков
         loadLikes();
         likeBtn.addEventListener('click', sendLike);
 
-        // === ОСТАЛЬНОЙ КОД БЕЗ ИЗМЕНЕНИЙ ===
+        // === ФУНКЦИИ КОПИРОВАНИЯ ===
+        function setupCopyButton(codeId, btnId) {
+            document.getElementById(btnId).addEventListener('click', function() {
+                const code = document.getElementById(codeId).innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    const btn = this;
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    btn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            });
+        }
+
+        // === НАВИГАЦИЯ ===
         function createSnowflakes() {
             const snowflakes = document.getElementById('snowflakes');
             const snowflakeChars = ['❄', '❅', '❆', '✻', '✼'];
@@ -403,21 +686,15 @@
             exploitPage.classList.add('hidden');
         });
 
-        document.getElementById('copy-btn').addEventListener('click', function() {
-            const code = document.getElementById('fly-code').innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                const btn = this;
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
-                btn.classList.add('bg-green-600');
-                btn.classList.remove('bg-red-700');
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('bg-green-600');
-                    btn.classList.add('bg-red-700');
-                }, 2000);
-            });
-        });
+        // Настройка кнопок копирования
+        setupCopyButton('fly-code', 'copy-fly-btn');
+        setupCopyButton('ink-code', 'copy-ink-btn');
+        setupCopyButton('forest-code', 'copy-forest-btn');
+        setupCopyButton('fling-code', 'copy-fling-btn');
+        setupCopyButton('doors-code', 'copy-doors-btn');
+        setupCopyButton('infinity-code', 'copy-infinity-btn');
+        setupCopyButton('plane-code', 'copy-plane-btn');
+        setupCopyButton('meme-code', 'copy-meme-btn');
 
         createSnowflakes();
     </script>

@@ -154,6 +154,58 @@
             color: #94a3b8;
             font-style: italic;
         }
+        .captcha-container {
+            background: rgba(30, 27, 75, 0.7);
+            border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .captcha-box {
+            background: rgba(15, 13, 45, 0.8);
+            border: 2px dashed #fbbf24;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            letter-spacing: 8px;
+            color: #fbbf24;
+            font-weight: bold;
+        }
+        .captcha-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            background: rgba(15, 13, 45, 0.8);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .captcha-input:focus {
+            outline: none;
+            border-color: #ef4444;
+        }
+        .key-display {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            letter-spacing: 4px;
+            color: #10b981;
+            font-weight: bold;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -175,6 +227,9 @@
                 </button>
                 <button id="go-to-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
                     Форум
+                </button>
+                <button id="go-to-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
+                    🔑 Ключ
                 </button>
             </div>
         </nav>
@@ -547,6 +602,58 @@
         </footer>
     </div>
 
+    <!-- Страница ключа -->
+    <div id="key-page" class="container mx-auto px-4 py-6 hidden relative z-20">
+        <nav class="flex justify-between items-center mb-8">
+            <div class="text-center">
+                <div class="text-4xl mb-2">🔑</div>
+                <h1 class="header-title">Получение Ключа</h1>
+                <p class="text-snow/80 text-sm">Завершите капчу для получения доступа</p>
+            </div>
+            <button id="back-to-main-from-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                Назад
+            </button>
+        </nav>
+
+        <div class="captcha-container">
+            <h2 class="text-2xl font-bold mb-6 text-center">Завершите капчу</h2>
+            
+            <div class="captcha-box" id="captcha-display">
+                X7K9M2
+            </div>
+            
+            <p class="text-snow/80 mb-4">Введите символы с изображения выше</p>
+            
+            <input 
+                type="text" 
+                id="captcha-input" 
+                class="captcha-input" 
+                placeholder="Введите код..."
+                maxlength="6"
+            >
+            
+            <button id="verify-captcha-btn" class="nav-link px-6 py-3 rounded-lg font-bold text-snow w-full">
+                Проверить капчу
+            </button>
+            
+            <div id="key-result" class="hidden mt-6">
+                <h3 class="text-xl font-bold text-green-400 mb-3">✅ Капча успешно завершена!</h3>
+                <p class="text-snow/80 mb-3">Ваш ключ для доступа к премиум скриптам:</p>
+                <div class="key-display" id="key-display">d31w-127fr-sd4gr</div>
+                <button id="copy-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow mt-3">
+                    <i class="fas fa-copy"></i> Копировать ключ
+                </button>
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center text-snow/70 text-sm">
+            <p class="mb-2">Ключ действителен для всех премиум функций сайта.</p>
+            <a href="https://t.me/alexzyab1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-yellow-300 hover:text-yellow-200 transition-colors font-bold">
+                <i class="fab fa-telegram text-xl"></i> Наш Telegram-канал
+            </a>
+        </footer>
+    </div>
+
     <!-- Остальные страницы без изменений -->
     <div id="exploit-page" class="container mx-auto px-4 py-6 hidden relative z-20">
         <nav class="flex justify-between items-center mb-8">
@@ -561,6 +668,9 @@
                 </button>
                 <button id="go-to-forum-from-main-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
                     Форум
+                </button>
+                <button id="go-to-key-from-exploit-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
+                    🔑 Ключ
                 </button>
             </div>
         </nav>
@@ -600,9 +710,14 @@
                 <h1 class="header-title">Roblox Scripts</h1>
                 <p class="text-snow/80 text-sm">Новогоднее Издание 2025</p>
             </div>
-            <button id="back-to-scripts-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
-                Назад к скриптам
-            </button>
+            <div class="flex gap-3">
+                <button id="back-to-scripts-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                    Назад к скриптам
+                </button>
+                <button id="go-to-key-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
+                    🔑 Ключ
+                </button>
+            </div>
         </nav>
         <section class="max-w-3xl mx-auto">
             <h2 class="text-3xl font-bold mb-6 text-center text-yellow-300">Форум поддержки</h2>
@@ -762,6 +877,68 @@
             });
         }
 
+        // === КАПЧА И КЛЮЧ ===
+        function setupCaptcha() {
+            const captchaDisplay = document.getElementById('captcha-display');
+            const captchaInput = document.getElementById('captcha-input');
+            const verifyBtn = document.getElementById('verify-captcha-btn');
+            const keyResult = document.getElementById('key-result');
+            const keyDisplay = document.getElementById('key-display');
+            const copyKeyBtn = document.getElementById('copy-key-btn');
+            
+            // Генерация случайного капчи кода
+            function generateCaptcha() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let captcha = '';
+                for (let i = 0; i < 6; i++) {
+                    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                captchaDisplay.textContent = captcha;
+                return captcha;
+            }
+            
+            let currentCaptcha = generateCaptcha();
+            
+            verifyBtn.addEventListener('click', function() {
+                const userInput = captchaInput.value.trim().toUpperCase();
+                if (userInput === currentCaptcha) {
+                    // Капча верна
+                    keyResult.classList.remove('hidden');
+                    captchaInput.disabled = true;
+                    verifyBtn.disabled = true;
+                    verifyBtn.textContent = 'Капча завершена ✓';
+                    verifyBtn.classList.add('bg-green-600');
+                } else {
+                    // Неверная капча
+                    alert('❌ Неверный код капчи. Попробуйте снова.');
+                    currentCaptcha = generateCaptcha();
+                    captchaInput.value = '';
+                    captchaInput.focus();
+                }
+            });
+            
+            // Копирование ключа
+            copyKeyBtn.addEventListener('click', function() {
+                const key = keyDisplay.textContent;
+                navigator.clipboard.writeText(key).then(() => {
+                    const originalText = copyKeyBtn.innerHTML;
+                    copyKeyBtn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    copyKeyBtn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        copyKeyBtn.innerHTML = originalText;
+                        copyKeyBtn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            });
+            
+            // Обработка нажатия Enter в поле капчи
+            captchaInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    verifyBtn.click();
+                }
+            });
+        }
+
         // === НАВИГАЦИЯ ===
         function createSnowflakes() {
             const snowflakes = document.getElementById('snowflakes');
@@ -782,35 +959,84 @@
         const mainPage = document.getElementById('main-page');
         const exploitPage = document.getElementById('exploit-page');
         const forumPage = document.getElementById('forum-page');
+        const keyPage = document.getElementById('key-page');
+
+        // Кнопки перехода на страницу ключа
+        document.getElementById('go-to-key-btn').addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-key-from-exploit-btn').addEventListener('click', () => {
+            exploitPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            mainPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-key-from-forum-btn').addEventListener('click', () => {
+            forumPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            mainPage.classList.add('hidden');
+            exploitPage.classList.add('hidden');
+        });
+
+        // Кнопка возврата с страницы ключа
+        document.getElementById('back-to-main-from-key-btn').addEventListener('click', () => {
+            keyPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            // Сброс формы капчи при возврате
+            document.getElementById('captcha-input').value = '';
+            document.getElementById('captcha-input').disabled = false;
+            document.getElementById('verify-captcha-btn').disabled = false;
+            document.getElementById('verify-captcha-btn').textContent = 'Проверить капчу';
+            document.getElementById('verify-captcha-btn').classList.remove('bg-green-600');
+            document.getElementById('key-result').classList.add('hidden');
+            // Перегенерация капчи
+            const captchaDisplay = document.getElementById('captcha-display');
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            captchaDisplay.textContent = captcha;
+        });
 
         document.getElementById('go-to-main-btn').addEventListener('click', () => {
             mainPage.classList.add('hidden');
             exploitPage.classList.remove('hidden');
             forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
         });
 
         document.getElementById('go-to-forum-btn').addEventListener('click', () => {
             mainPage.classList.add('hidden');
             forumPage.classList.remove('hidden');
             exploitPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
         });
 
         document.getElementById('back-to-scripts-btn').addEventListener('click', () => {
             exploitPage.classList.add('hidden');
             mainPage.classList.remove('hidden');
             forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
         });
 
         document.getElementById('go-to-forum-from-main-btn').addEventListener('click', () => {
             exploitPage.classList.add('hidden');
             forumPage.classList.remove('hidden');
             mainPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
         });
 
         document.getElementById('back-to-scripts-from-forum-btn').addEventListener('click', () => {
             forumPage.classList.add('hidden');
             mainPage.classList.remove('hidden');
             exploitPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
         });
 
         // Настройка кнопок копирования
@@ -824,8 +1050,9 @@
         setupCopyButton('plane-code', 'copy-plane-btn');
         setupCopyButton('meme-code', 'copy-meme-btn');
 
-        // Инициализация поиска
+        // Инициализация поиска и капчи
         setupSearch();
+        setupCaptcha();
 
         createSnowflakes();
     </script>

@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
@@ -36,18 +51,66 @@
             margin: 0;
             padding: 0;
         }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 90% 80%, rgba(147, 197, 253, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 30% 70%, rgba(219, 234, 254, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Падающий снег */
         .snowflake {
             position: absolute;
             color: #ffffff;
             font-size: 1.2rem;
             top: -20px;
             animation: fall linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
         @keyframes fall {
             to {
                 transform: translateY(105vh) rotate(360deg);
             }
         }
+        
+        /* Мерцающие огни */
+        .christmas-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+            pointer-events: none;
+        }
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 4px;
+            animation: twinkle 3s infinite;
+        }
+        .light:nth-child(1) { background: #ef4444; animation-delay: 0s; }
+        .light:nth-child(2) { background: #10b981; animation-delay: 0.5s; }
+        .light:nth-child(3) { background: #fbbf24; animation-delay: 1s; }
+        .light:nth-child(4) { background: #3b82f6; animation-delay: 1.5s; }
+        .light:nth-child(5) { background: #8b5cf6; animation-delay: 2s; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
         .copy-btn:hover::after {
             content: 'Скопировано!';
             position: absolute;
@@ -75,6 +138,7 @@
             background-clip: text;
             color: transparent;
             animation: gradientShift 6s ease infinite;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
         }
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -143,13 +207,87 @@
             color: #94a3b8;
             font-style: italic;
         }
+        .captcha-container {
+            background: rgba(12, 74, 110, 0.7);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .captcha-box {
+            background: rgba(7, 50, 76, 0.8);
+            border: 2px dashed #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            letter-spacing: 8px;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        .captcha-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            background: rgba(7, 50, 76, 0.8);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .captcha-input:focus {
+            outline: none;
+            border-color: #fbbf24;
+        }
+        .key-display {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            letter-spacing: 4px;
+            color: #10b981;
+            font-weight: bold;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Ёлочные шары */
+        .ornament {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 20px;
+            animation: float 6s infinite ease-in-out;
+        }
+        .ornament:nth-child(1) { left: 5%; background: #ef4444; }
+        .ornament:nth-child(2) { left: 15%; background: #10b981; }
+        .ornament:nth-child(3) { left: 25%; background: #fbbf24; }
+        .ornament:nth-child(4) { right: 5%; background: #8b5cf6; }
+        .ornament:nth-child(5) { right: 15%; background: #3b82f6; }
+        .ornament:nth-child(6) { right: 25%; background: #ec4899; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Форма публикации */
         .publish-form {
             background: rgba(12, 74, 110, 0.7);
             border: 2px solid #3b82f6;
             border-radius: 12px;
             padding: 24px;
             max-width: 600px;
-            margin: 0 auto 2rem auto;
+            margin: 2rem auto;
         }
         .publish-form input,
         .publish-form textarea {
@@ -182,7 +320,7 @@
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
         .public-scripts {
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
         .public-script-card {
             background: rgba(30, 41, 59, 0.7);
@@ -207,10 +345,27 @@
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Мерцающие огни -->
+    <div class="christmas-lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+    
+    <!-- Ёлочные шары -->
+    <div class="ornament"></div>
+    <div class="ornament"></div>
+    <div class="ornament"></div>
+    <div class="ornament"></div>
+    <div class="ornament"></div>
+    <div class="ornament"></div>
+
     <!-- Падающий снег -->
     <div id="snowflakes" class="fixed inset-0 pointer-events-none z-10"></div>
 
-    <!-- Главная страница -->
+    <!-- Главная страница (по умолчанию) -->
     <div id="main-page" class="container mx-auto px-4 py-6 relative z-20">
         <!-- Навигация -->
         <nav class="flex justify-between items-center mb-8">
@@ -226,45 +381,574 @@
                 <button id="go-to-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
                     Форум
                 </button>
-                <button id="go-to-publish-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600">
+                <button id="go-to-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600">
+                    🔑 Ключ
+                </button>
+                <button id="go-to-publish-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
                     📝 Опубликовать
                 </button>
             </div>
         </nav>
 
-        <!-- Форма публикации -->
-        <div id="publish-section" class="publish-form">
-            <h2 class="text-2xl font-bold mb-4 text-center">Опубликовать свой скрипт</h2>
-            <input type="text" id="script-name" placeholder="Название скрипта*" required />
-            <input type="text" id="script-game" placeholder="Игра (оставьте пустым для универсального)" />
-            <textarea id="script-code" placeholder="Ваш скрипт (loadstring код)*" required></textarea>
-            <button id="publish-btn">Опубликовать скрипт</button>
-            <div id="publish-message" class="mt-3 text-center"></div>
+        <!-- Поиск -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Например: ink game" 
+                autocomplete="off"
+            >
         </div>
+
+        <!-- Скрипты -->
+        <section id="scripts-container" class="max-w-4xl mx-auto space-y-8">
+            <!-- Fly Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 overflow-hidden shadow-2xl card-glow" data-game="fly">
+                <div class="p-6 border-b border-blue-800/30 bg-gradient-to-r from-blue-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-sleigh text-blue-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Fly Script</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Включает возможность полета в любой игре Roblox. Работает на большинстве исполнителей.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-blue-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-blue-500/30">
+<code id="fly-code">loadstring(game:HttpGet("https://obj.wearedevs.net/2/scripts/Fly.lua"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-fly-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-blue-700 hover:bg-blue-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 20 декабря 2025
+                        </span>
+                    </div>
+                    <div class="mt-6 flex justify-center">
+                        <button id="like-btn" class="like-btn flex items-center gap-2 text-2xl p-3 rounded-full hover:bg-gray-800/50 transition-all">
+                            <i class="far fa-heart"></i>
+                            <span id="like-count" class="text-sm font-bold">—</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ink Game Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-purple-900/50 overflow-hidden shadow-2xl card-glow" data-game="ink game inkgame">
+                <div class="p-6 border-b border-purple-800/30 bg-gradient-to-r from-purple-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-tint text-purple-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Ink Game Script</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Полный скрипт для игры Ink Game с функциями: Auto Farm, Auto Kill, Esp, Aimbot и многое другое.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-cyan-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-cyan-500/30">
+<code id="ink-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/inkgame.lua", true))()</code>
+                        </pre>
+                        <button 
+                            id="copy-ink-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-purple-700 hover:bg-purple-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 99 Nights in the Forest Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-green-900/50 overflow-hidden shadow-2xl card-glow" data-game="99 nights in the forest forest nights">
+                <div class="p-6 border-b border-green-800/30 bg-gradient-to-r from-green-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-tree text-green-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🎄] 99 Nights in the Forest 🔦</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Автоматический фарм, ESP, Auto Collect, Anti-AFK и другие функции для прохождения игры.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-emerald-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-emerald-500/30">
+<code id="forest-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()</code>
+                        </pre>
+                        <button 
+                            id="copy-forest-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-green-700 hover:bg-green-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fling Things and People Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-yellow-900/50 overflow-hidden shadow-2xl card-glow" data-game="fling things and people fling">
+                <div class="p-6 border-b border-yellow-800/30 bg-gradient-to-r from-yellow-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-hand-paper text-yellow-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Fling Things and People</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Забавный скрипт для запуска игроков и объектов в воздух. Работает на большинстве серверов.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-amber-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-amber-500/30">
+<code id="fling-code">loadstring(game:HttpGet('https://raw.githubusercontent.com/Brovaky/Friendly/refs/heads/main/Friendly'))()</code>
+                        </pre>
+                        <button 
+                            id="copy-fling-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-yellow-700 hover:bg-yellow-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ultimate Fling GUI Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-teal-900/50 overflow-hidden shadow-2xl card-glow" data-game="ultimate fling gui fling">
+                <div class="p-6 border-b border-teal-800/30 bg-gradient-to-r from-teal-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-rocket text-teal-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Ultimate Fling GUI</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Улучшенная версия скрипта Fling с графическим интерфейсом и дополнительными функциями.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-teal-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-teal-500/30">
+<code id="ultimate-fling-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/K1LAS1K/Ultimate-Fling-GUI/main/flingscript.lua"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-ultimate-fling-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-teal-700 hover:bg-teal-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doors Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 overflow-hidden shadow-2xl card-glow" data-game="doors">
+                <div class="p-6 border-b border-blue-800/30 bg-gradient-to-r from-blue-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-door-open text-blue-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Doors Script</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Мощный скрипт для игры Doors с Auto Farm, ESP, и обходом некоторых античитов.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-blue-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-blue-500/30">
+<code id="doors-code">loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/87ee948d4e7d8808"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-doors-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-blue-700 hover:bg-blue-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="warning">
+                        ⚠️ <strong>Внимание:</strong> Этот скрипт загружается с Panda Development. Убедитесь, что ваш эксплоит разрешает внешние соединения.
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infinity Yield Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-indigo-900/50 overflow-hidden shadow-2xl card-glow" data-game="infinity yield infinite yield inf yield">
+                <div class="p-6 border-b border-indigo-800/30 bg-gradient-to-r from-indigo-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-infinity text-indigo-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">Infinity Yield</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Один из самых мощных и функциональных читов для Roblox с сотнями команд и возможностей.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-indigo-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-indigo-500/30">
+<code id="infinity-code">loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()</code>
+                        </pre>
+                        <button 
+                            id="copy-infinity-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-indigo-700 hover:bg-indigo-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plane Crazy Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-orange-900/50 overflow-hidden shadow-2xl card-glow" data-game="plane crazy hammer plane">
+                <div class="p-6 border-b border-orange-800/30 bg-gradient-to-r from-orange-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-hammer text-orange-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🔨] Plane Crazy [UPDATE]</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Улучшенный чит для игры Plane Crazy с возможностью фарма, управления самолётом и многое другое.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-orange-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-orange-500/30">
+<code id="plane-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/za1kL/Plane-Crazy/refs/heads/main/Refz%20V1.0.6"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-plane-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-orange-700 hover:bg-orange-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guess the Meme Script -->
+            <div class="script-card bg-gray-900/70 backdrop-blur-sm rounded-xl border border-pink-900/50 overflow-hidden shadow-2xl card-glow" data-game="guess the meme meme inf money">
+                <div class="p-6 border-b border-pink-800/30 bg-gradient-to-r from-pink-900/20 to-transparent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-comment-dots text-pink-400 text-2xl"></i>
+                        <h2 class="text-2xl font-bold text-snow">[🔊] Guess the Meme - Inf Money</h2>
+                    </div>
+                    <p class="text-snow/80">
+                        Скрипт с неограниченными деньгами для игры Guess the Meme. Покупайте любые предметы без ограничений!
+                    </p>
+                </div>
+                <div class="p-6">
+                    <div class="relative">
+                        <pre class="text-pink-300 bg-gray-800/80 p-4 rounded-lg overflow-x-auto text-sm md:text-base border border-pink-500/30">
+<code id="meme-code">loadstring(game:HttpGet("https://rawscripts.net/raw/Guess-the-Meme-Inf-money-77653"))()</code>
+                        </pre>
+                        <button 
+                            id="copy-meme-btn" 
+                            class="copy-btn absolute top-3 right-3 bg-pink-700 hover:bg-pink-600 text-snow px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-1 font-bold"
+                        >
+                            <i class="fas fa-copy"></i> Копировать
+                        </button>
+                    </div>
+                    <div class="warning">
+                        ⚠️ <strong>Внимание:</strong> Этот скрипт загружается с RawScripts.net. Убедитесь, что ваш эксплоит может подключаться к этому домену.
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3 text-sm text-snow/70">
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-shield-alt text-green-400"></i> Безопасный
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-bolt text-yellow-400"></i> Работает мгновенно
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <i class="fas fa-sync text-cyan-400"></i> Обновлено: 24 декабря 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Публичные скрипты -->
         <div class="public-scripts">
-            <h2 class="text-2xl font-bold mb-4 text-center">Публичные скрипты</h2>
+            <h2 class="text-2xl font-bold mb-4 text-center">Публичные скрипты пользователей</h2>
             <div id="public-scripts-container">
-                <div class="loading">Загрузка скриптов...</div>
+                <div class="loading">Загрузка...</div>
             </div>
         </div>
 
         <footer class="mt-16 text-center text-snow/70 text-sm">
-            <p class="mb-2">Используйте скрипты ответственно.</p>
+            <p class="mb-2">Используйте скрипты ответственно. Мы не несем ответственности за последствия использования.</p>
             <a href="https://t.me/alexzyab1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-yellow-300 hover:text-yellow-200 transition-colors font-bold">
-                <i class="fab fa-telegram text-xl"></i> Telegram-канал
+                <i class="fab fa-telegram text-xl"></i> Наш Telegram-канал
             </a>
             <div class="mt-4 text-yellow-400">❄️ С Новым 2026 Годом! 🎄</div>
         </footer>
     </div>
 
+    <!-- Страница ключа -->
+    <div id="key-page" class="container mx-auto px-4 py-6 hidden relative z-20">
+        <nav class="flex justify-between items-center mb-8">
+            <div class="text-center">
+                <div class="text-4xl mb-2">🔑</div>
+                <h1 class="header-title">Получение Ключа</h1>
+                <p class="text-snow/80 text-sm">Завершите капчу для получения доступа</p>
+            </div>
+            <button id="back-to-main-from-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                Назад
+            </button>
+        </nav>
+
+        <div class="captcha-container">
+            <h2 class="text-2xl font-bold mb-6 text-center">Завершите капчу</h2>
+            
+            <div class="captcha-box" id="captcha-display">
+                X7K9M2
+            </div>
+            
+            <p class="text-snow/80 mb-4">Введите символы с изображения выше</p>
+            
+            <input 
+                type="text" 
+                id="captcha-input" 
+                class="captcha-input" 
+                placeholder="Введите код..."
+                maxlength="6"
+            >
+            
+            <button id="verify-captcha-btn" class="nav-link px-6 py-3 rounded-lg font-bold text-snow w-full">
+                Проверить капчу
+            </button>
+            
+            <div id="key-result" class="hidden mt-6">
+                <h3 class="text-xl font-bold text-green-400 mb-3">✅ Капча успешно завершена!</h3>
+                <p class="text-snow/80 mb-3">Ваш ключ для доступа к премиум скриптам:</p>
+                <div class="key-display" id="key-display">d31w-127fr-sd4gr</div>
+                <button id="copy-key-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow mt-3">
+                    <i class="fas fa-copy"></i> Копировать ключ
+                </button>
+            </div>
+        </div>
+
+        <footer class="mt-16 text-center text-snow/70 text-sm">
+            <p class="mb-2">Ключ действителен для всех премиум функций сайта.</p>
+            <a href="https://t.me/alexzyab1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-yellow-300 hover:text-yellow-200 transition-colors font-bold">
+                <i class="fab fa-telegram text-xl"></i> Наш Telegram-канал
+            </a>
+        </footer>
+    </div>
+
+    <!-- Остальные страницы без изменений -->
+    <div id="exploit-page" class="container mx-auto px-4 py-6 hidden relative z-20">
+        <nav class="flex justify-between items-center mb-8">
+            <div class="text-center">
+                <div class="text-4xl mb-2">🎅</div>
+                <h1 class="header-title">Roblox Scripts</h1>
+                <p class="text-snow/80 text-sm">Зимнее Издание 2025</p>
+            </div>
+            <div class="flex gap-3">
+                <button id="back-to-scripts-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                    Назад к скриптам
+                </button>
+                <button id="go-to-forum-from-main-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                    Форум
+                </button>
+                <button id="go-to-key-from-exploit-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600">
+                    🔑 Ключ
+                </button>
+                <button id="go-to-publish-from-exploit-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
+                    📝 Опубликовать
+                </button>
+            </div>
+        </nav>
+        <section class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 text-yellow-300">JJSploit — Ваш надежный эксплоит</h2>
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 p-6 shadow-2xl card-glow inline-block">
+                <img src="https://wearedevs.net/images/thumbnails/JJSploit.webp" alt="JJSploit" class="w-32 h-32 mx-auto rounded-lg border-2 border-yellow-500/50 mb-4 bg-blue-900/20 p-2"/>
+                <h3 class="text-xl font-semibold mb-4 text-snow">Начните игру всего за несколько секунд!</h3>
+                <div class="text-left bg-gray-800/60 p-5 rounded-lg mb-6 border border-blue-800/30">
+                    <h4 class="font-bold text-lg mb-3 text-yellow-300">Инструкции:</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-snow/90">
+                        <li>Присоединяйтесь к игре и убедитесь, что она полностью загружена</li>
+                        <li>Откройте JJSploit</li>
+                        <li>Если появится система бесплатной разблокировки, следуйте инструкциям</li>
+                        <li>JJSploit подключится автоматически. Дождитесь уведомления об успешном завершении игры</li>
+                    </ol>
+                </div>
+                <p class="text-snow/80 mb-6">Уведомление означает, что JJSploit готов к использованию. Теперь вы можете приступить к выполнению скриптов и использованию команд с помощью кнопки!</p>
+                <a href="https://drive.google.com/file/d/1HRJnHMIwVA04xMR_JliCM-dmlWloLYO1/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 rounded-lg font-bold transition-all transform hover:scale-105 text-snow font-bold shadow-lg">
+                    🎁 Скачать JJSploit
+                </a>
+            </div>
+        </section>
+        <footer class="mt-16 text-center text-snow/70 text-sm">
+            <p class="mb-2">Используйте скрипты ответственно. Мы не несем ответственности за последствия использования.</p>
+            <a href="https://t.me/alexzyab1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-yellow-300 hover:text-yellow-200 transition-colors font-bold">
+                <i class="fab fa-telegram text-xl"></i> Наш Telegram-канал
+            </a>
+            <div class="mt-4 text-yellow-400">🎄 Пусть Новый Год принесет удачу во всех ваших играх! ❄️</div>
+        </footer>
+    </div>
+
+    <div id="forum-page" class="container mx-auto px-4 py-6 hidden relative z-20">
+        <nav class="flex justify-between items-center mb-8">
+            <div class="text-center">
+                <div class="text-4xl mb-2">🌨️</div>
+                <h1 class="header-title">Roblox Scripts</h1>
+                <p class="text-snow/80 text-sm">Зимнее Издание 2025</p>
+            </div>
+            <div class="flex gap-3">
+                <button id="back-to-scripts-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow">
+                    Назад к скриптам
+                </button>
+                <button id="go-to-key-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600">
+                    🔑 Ключ
+                </button>
+                <button id="go-to-publish-from-forum-btn" class="nav-link px-4 py-2 rounded-lg font-bold text-snow bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
+                    📝 Опубликовать
+                </button>
+            </div>
+        </nav>
+        <section class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center text-yellow-300">Форум поддержки</h2>
+            <p class="text-snow/80 text-center mb-8">Решение распространённых проблем с инжектом и эксплоитами</p>
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 p-5 mb-5 card-glow">
+                <h3 class="font-bold text-lg text-blue-400 mb-2 flex items-center gap-2"><i class="fas fa-times-circle"></i> Ошибка: В игре "Ink Game" не инжектится</h3>
+                <p class="text-snow/90"><strong>Решение:</strong> Нужно инжектить, как только появилось окошко загрузки плейса — не раньше и не позже. Подождите появления экрана загрузки и сразу запускайте JJSploit.</p>
+            </div>
+            <div class="bg-gray-900/70 backdrop-blur-sm rounded-xl border border-blue-900/50 p-5 card-glow">
+                <h3 class="font-bold text-lg text-blue-400 mb-2 flex items-center gap-2"><i class="fas fa-times-circle"></i> Ошибка: Эксплоит не инжектится вообще</h3>
+                <p class="text-snow/90"><strong>Решение:</strong> Попробуйте установить <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe" target="_blank" class="text-yellow-300 hover:text-yellow-200 hover:underline">Microsoft Visual C++ Redistributable</a>, а затем переустановить JJSploit. Иногда антивирус может блокировать инжект — временно отключите его.</p>
+            </div>
+        </section>
+        <footer class="mt-16 text-center text-snow/70 text-sm">
+            <p class="mb-2">Не нашли решение? Попробуйте обновить JJSploit или обратитесь в Discord-сообщество.</p>
+            <a href="https://t.me/alexzyab1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-yellow-300 hover:text-yellow-200 transition-colors font-bold">
+                <i class="fab fa-telegram text-xl"></i> Telegram-канал с обновлениями и поддержкой
+            </a>
+            <div class="mt-4 text-yellow-400">❄️ Счастливого Нового Года и удачных скриптов! 🎄</div>
+        </footer>
+    </div>
+
     <script>
         // === КОНФИГУРАЦИЯ ===
-        const BIN_ID = "6769f892e41b4d3b1a9e3a20"; // Ваш существующий бин для лайков
-        const SCRIPTS_BIN_ID = "676a0b1fe41b4d3b1a9e3a21"; // Новый бин для скриптов (создайте его на jsonbin.io)
-        const API_KEY = "$2a$10$V8QvWmXpGvKqzZ7xY5jF8u2T3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7";
-        
+        // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ С JSONBIN.IO
+        const SCRIPTS_BIN_ID = "6978b3cdd0ea881f4089dfaf"; // Пример: "676a0b1fe41b4d3b1a9e3a21"
+        const API_KEY = "$2a$10$oaeI6r7LdYpRTmu8Vn5g0e4NwyHTgutV4XXtccOtgSDE3q1sv0RiW";      // Пример: "$2a$10$V8QvWmXpGvKqzZ7xY5jF8u2T3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7"
+
+        // === РАБОЧАЯ СИСТЕМА ЛАЙКОВ ЧЕРЕЗ CountAPI ===
+        const likeBtn = document.getElementById('like-btn');
+        const likeCount = document.getElementById('like-count');
+        const likeIcon = likeBtn.querySelector('i');
+        let hasLiked = false;
+
+        async function loadLikes() {
+            try {
+                const response = await fetch('https://api.countapi.xyz/get/roblox-scripts/fly-likes');
+                const data = await response.json();
+                likeCount.textContent = data.value || 0;
+            } catch (err) {
+                console.error("Не удалось загрузить лайки:", err);
+                likeCount.textContent = "—";
+            }
+        }
+
+        async function sendLike() {
+            if (hasLiked) return;
+            
+            try {
+                const response = await fetch('https://api.countapi.xyz/hit/roblox-scripts/fly-likes');
+                const data = await response.json();
+                likeCount.textContent = data.value;
+                hasLiked = true;
+                likeBtn.classList.add('liked');
+                likeIcon.className = 'fas fa-heart';
+            } catch (err) {
+                console.error("Ошибка при отправке лайка:", err);
+                alert("Не удалось отправить лайк. Попробуйте позже.");
+            }
+        }
+
         // === ФУНКЦИИ РАБОТЫ С JSONBIN ===
         async function fetchScripts() {
             try {
@@ -300,17 +984,6 @@
             }
         }
 
-        async function getNextId() {
-            try {
-                const response = await fetch('https://api.countapi.xyz/hit/roblox-scripts/public-script-id');
-                const data = await response.json();
-                return data.value;
-            } catch (err) {
-                console.error("Ошибка получения ID:", err);
-                return Date.now(); // fallback
-            }
-        }
-
         // === ОТОБРАЖЕНИЕ СКРИПТОВ ===
         function renderScripts(scripts) {
             const container = document.getElementById('public-scripts-container');
@@ -324,7 +997,7 @@
                 <div class="public-script-card">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-bold text-lg text-snow">${script.name}</h3>
-                        ${script.game ? `<span class="bg-blue-900/50 text-blue-300 px-2 py-1 rounded text-xs">${script.game}</span>` : ''}
+                        ${script.game ? `<span class="bg-blue-900/50 text-blue-300 px-2 py-1 rounded text-xs">${script.game}</span>` : '<span class="bg-green-900/50 text-green-300 px-2 py-1 rounded text-xs">Универсальный</span>'}
                     </div>
                     <div class="relative mb-2">
                         <pre class="text-green-300 bg-gray-800/80 p-3 rounded-lg overflow-x-auto text-sm border border-green-500/30">
@@ -361,12 +1034,12 @@
             
             try {
                 const scripts = await fetchScripts();
-                const newId = await getNextId();
+                const newId = Date.now(); // Уникальный ID
                 
                 const newScript = {
                     id: newId,
                     name,
-                    game: game || 'Универсальный',
+                    game: game || '',
                     code,
                     timestamp: Date.now()
                 };
@@ -380,13 +1053,13 @@
                     document.getElementById('script-name').value = '';
                     document.getElementById('script-game').value = '';
                     document.getElementById('script-code').value = '';
-                    loadAndRenderScripts(); // Обновляем список
+                    loadAndRenderPublicScripts(); // Обновляем список
                 } else {
                     throw new Error('Не удалось сохранить');
                 }
             } catch (err) {
                 console.error("Ошибка публикации:", err);
-                messageEl.innerHTML = '<div class="error">❌ Не удалось опубликовать скрипт. Попробуйте позже.</div>';
+                messageEl.innerHTML = '<div class="error">❌ Не удалось опубликовать скрипт. Проверьте BIN_ID и API_KEY.</div>';
             }
         }
 
@@ -397,34 +1070,311 @@
             });
         }
 
-        // === ЗАГРУЗКА И ОТОБРАЖЕНИЕ ===
-        async function loadAndRenderScripts() {
+        // === ЗАГРУЗКА И ОТОБРАЖЕНИЕ ПУБЛИЧНЫХ СКРИПТОВ ===
+        async function loadAndRenderPublicScripts() {
             const scripts = await fetchScripts();
             renderScripts(scripts);
         }
 
-        // === ИНИЦИАЛИЗАЦИЯ ===
-        document.getElementById('publish-btn').addEventListener('click', publishScript);
-        loadAndRenderScripts();
+        // === ФУНКЦИИ КОПИРОВАНИЯ ===
+        function setupCopyButton(codeId, btnId) {
+            document.getElementById(btnId).addEventListener('click', function() {
+                const code = document.getElementById(codeId).innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    const btn = this;
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    btn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            });
+        }
 
-        // === СНЕЖИНКИ ===
+        // === ПОИСК ПО ИГРАМ ===
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            const scriptCards = document.querySelectorAll('.script-card');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                
+                if (query === '') {
+                    scriptCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                let hasResults = false;
+                
+                scriptCards.forEach(card => {
+                    const keywords = card.getAttribute('data-game').toLowerCase();
+                    if (keywords.includes(query)) {
+                        card.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                const scriptsContainer = document.getElementById('scripts-container');
+                const existingNoResults = scriptsContainer.querySelector('.no-results');
+                
+                if (!hasResults) {
+                    if (!existingNoResults) {
+                        const noResultsDiv = document.createElement('div');
+                        noResultsDiv.className = 'no-results';
+                        noResultsDiv.innerHTML = `
+                            <i class="fas fa-search fa-2x mb-3 text-gray-500"></i>
+                            <p>Скрипты для "<strong>${this.value}</strong>" не найдены</p>
+                            <p class="mt-2 text-sm">Попробуйте поискать: <span class="text-yellow-400 cursor-pointer hover:underline" onclick="document.getElementById('search-input').value='ink game'; document.getElementById('search-input').dispatchEvent(new Event('input'))">ink game</span></p>
+                        `;
+                        scriptsContainer.appendChild(noResultsDiv);
+                    }
+                } else {
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                }
+            });
+        }
+
+        // === ТЕКСТОВАЯ КАПЧА ===
+        function setupCaptcha() {
+            const captchaDisplay = document.getElementById('captcha-display');
+            const captchaInput = document.getElementById('captcha-input');
+            const verifyBtn = document.getElementById('verify-captcha-btn');
+            const keyResult = document.getElementById('key-result');
+            const keyDisplay = document.getElementById('key-display');
+            const copyKeyBtn = document.getElementById('copy-key-btn');
+            
+            function generateCaptcha() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let captcha = '';
+                for (let i = 0; i < 6; i++) {
+                    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                captchaDisplay.textContent = captcha;
+                return captcha;
+            }
+            
+            let currentCaptcha = generateCaptcha();
+            
+            verifyBtn.addEventListener('click', function() {
+                const userInput = captchaInput.value.trim().toUpperCase();
+                if (userInput === currentCaptcha) {
+                    keyResult.classList.remove('hidden');
+                    captchaInput.disabled = true;
+                    verifyBtn.disabled = true;
+                    verifyBtn.textContent = 'Капча завершена ✓';
+                    verifyBtn.classList.add('bg-green-600');
+                } else {
+                    alert('❌ Неверный код капчи. Попробуйте снова.');
+                    currentCaptcha = generateCaptcha();
+                    captchaInput.value = '';
+                    captchaInput.focus();
+                }
+            });
+            
+            copyKeyBtn.addEventListener('click', function() {
+                const key = keyDisplay.textContent;
+                navigator.clipboard.writeText(key).then(() => {
+                    const originalText = copyKeyBtn.innerHTML;
+                    copyKeyBtn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    copyKeyBtn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        copyKeyBtn.innerHTML = originalText;
+                        copyKeyBtn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            });
+            
+            captchaInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    verifyBtn.click();
+                }
+            });
+        }
+
+        // === ЗИМНЯЯ АНИМАЦИЯ СНЕГА ===
         function createSnowflakes() {
             const snowflakes = document.getElementById('snowflakes');
-            const snowflakeChars = ['❄', '❅', '❆', '✻', '✼'];
-            for (let i = 0; i < 50; i++) {
+            const snowflakeChars = ['❄', '❅', '❆', '✻', '✼', '❉', '❊'];
+            
+            for (let i = 0; i < 100; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake';
                 snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
                 snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.fontSize = (Math.random() * 10 + 8) + 'px';
-                snowflake.style.opacity = Math.random() * 0.7 + 0.3;
-                snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                snowflake.style.fontSize = (Math.random() * 12 + 8) + 'px';
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+                snowflake.style.animationDuration = (Math.random() * 8 + 6) + 's';
                 snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.textShadow = `0 0 ${Math.random() * 10 + 5}px rgba(255, 255, 255, ${Math.random() * 0.5 + 0.3})`;
                 snowflakes.appendChild(snowflake);
             }
         }
+
+        // === НАВИГАЦИЯ ===
+        const mainPage = document.getElementById('main-page');
+        const exploitPage = document.getElementById('exploit-page');
+        const forumPage = document.getElementById('forum-page');
+        const keyPage = document.getElementById('key-page');
+
+        // Кнопки перехода на страницу публикации
+        document.getElementById('go-to-publish-btn').addEventListener('click', () => {
+            // Создаем форму публикации, если её нет
+            if (!document.getElementById('publish-section')) {
+                const publishSection = document.createElement('div');
+                publishSection.id = 'publish-section';
+                publishSection.className = 'publish-form';
+                publishSection.innerHTML = `
+                    <h2 class="text-2xl font-bold mb-4 text-center">Опубликовать свой скрипт</h2>
+                    <input type="text" id="script-name" placeholder="Название скрипта*" required />
+                    <input type="text" id="script-game" placeholder="Игра (оставьте пустым для универсального)" />
+                    <textarea id="script-code" placeholder="Ваш скрипт (loadstring код)*" required></textarea>
+                    <button id="publish-btn">Опубликовать скрипт</button>
+                    <div id="publish-message" class="mt-3 text-center"></div>
+                `;
+                document.querySelector('#scripts-container').after(publishSection);
+                
+                // Настраиваем кнопку публикации
+                document.getElementById('publish-btn').addEventListener('click', publishScript);
+            }
+            
+            // Прокручиваем к форме
+            document.getElementById('publish-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('go-to-publish-from-exploit-btn').addEventListener('click', () => {
+            mainPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+            
+            // Ждём рендеринга, затем прокручиваем
+            setTimeout(() => {
+                document.getElementById('go-to-publish-btn').click();
+            }, 100);
+        });
+
+        document.getElementById('go-to-publish-from-forum-btn').addEventListener('click', () => {
+            mainPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('go-to-publish-btn').click();
+            }, 100);
+        });
+
+        document.getElementById('go-to-key-btn').addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-key-from-exploit-btn').addEventListener('click', () => {
+            exploitPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            mainPage.classList.add('hidden');
+            forumPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-key-from-forum-btn').addEventListener('click', () => {
+            forumPage.classList.add('hidden');
+            keyPage.classList.remove('hidden');
+            mainPage.classList.add('hidden');
+            exploitPage.classList.add('hidden');
+        });
+
+        document.getElementById('back-to-main-from-key-btn').addEventListener('click', () => {
+            keyPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            document.getElementById('captcha-input').value = '';
+            document.getElementById('captcha-input').disabled = false;
+            document.getElementById('verify-captcha-btn').disabled = false;
+            document.getElementById('verify-captcha-btn').textContent = 'Проверить капчу';
+            document.getElementById('verify-captcha-btn').classList.remove('bg-green-600');
+            document.getElementById('key-result').classList.add('hidden');
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captcha-display').textContent = captcha;
+        });
+
+        document.getElementById('go-to-main-btn').addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            exploitPage.classList.remove('hidden');
+            forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-forum-btn').addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            forumPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+        });
+
+        document.getElementById('back-to-scripts-btn').addEventListener('click', () => {
+            exploitPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            forumPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+        });
+
+        document.getElementById('go-to-forum-from-main-btn').addEventListener('click', () => {
+            exploitPage.classList.add('hidden');
+            forumPage.classList.remove('hidden');
+            mainPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+        });
+
+        document.getElementById('back-to-scripts-from-forum-btn').addEventListener('click', () => {
+            forumPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            exploitPage.classList.add('hidden');
+            keyPage.classList.add('hidden');
+        });
+
+        // Настройка кнопок копирования
+        setupCopyButton('fly-code', 'copy-fly-btn');
+        setupCopyButton('ink-code', 'copy-ink-btn');
+        setupCopyButton('forest-code', 'copy-forest-btn');
+        setupCopyButton('fling-code', 'copy-fling-btn');
+        setupCopyButton('ultimate-fling-code', 'copy-ultimate-fling-btn');
+        setupCopyButton('doors-code', 'copy-doors-btn');
+        setupCopyButton('infinity-code', 'copy-infinity-btn');
+        setupCopyButton('plane-code', 'copy-plane-btn');
+        setupCopyButton('meme-code', 'copy-meme-btn');
+
+        // Инициализация
+        loadLikes();
+        likeBtn.addEventListener('click', sendLike);
+        setupSearch();
+        setupCaptcha();
         createSnowflakes();
+        loadAndRenderPublicScripts(); // Загружаем публичные скрипты
     </script>
 </body>
 </html>
 
+
+
+              <script>
+                              const SCRIPTS_BIN_ID = "YOUR_BIN_ID_HERE";
+const API_KEY = "$2a$10$oaeI6r7LdYpRTmu8Vn5g0e4NwyHTgutV4XXtccOtgSDE3q1sv0RiW";
+
+
+              </script>
+                        </body>
+                        </html>
+                    

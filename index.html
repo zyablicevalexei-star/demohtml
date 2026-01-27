@@ -30,7 +30,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#3b82f6', // Синий вместо красного
                         secondary: '#0c4a6e',
                         accent: '#fbbf24',
                         snow: '#f3f4f6',
@@ -44,7 +44,7 @@
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Mountains+of+Christmas:wght@700&display=swap');
         body {
             font-family: 'JetBrains Mono', monospace;
-            background: linear-gradient(135deg, #0c0a09, #1e3a8a);
+            background: linear-gradient(135deg, #0c0a09, #1e3a8a); /* Зимний градиент */
             color: #f3f4f6;
             position: relative;
             overflow-x: hidden;
@@ -341,6 +341,14 @@
             border-radius: 8px;
             margin: 12px 0;
             color: #fecaca;
+        }
+        .cooldown {
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid #fbbf24;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            color: #fef3c7;
         }
     </style>
 </head>
@@ -912,9 +920,36 @@
 
     <script>
         // === КОНФИГУРАЦИЯ ===
-        // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ С JSONBIN.IO
-        const SCRIPTS_BIN_ID = "6978b3cdd0ea881f4089dfaf"; // Пример: "676a0b1fe41b4d3b1a9e3a21"
-        const API_KEY = "$2a$10$oaeI6r7LdYpRTmu8Vn5g0e4NwyHTgutV4XXtccOtgSDE3q1sv0RiW";      // Пример: "$2a$10$V8QvWmXpGvKqzZ7xY5jF8u2T3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7"
+        const SCRIPTS_BIN_ID = "6978b3cdd0ea881f4089dfaf"; // ЗАМЕНИТЕ НА СВОЙ
+        const API_KEY = "$2a$10$oaeI6r7LdYpRTmu8Vn5g0e4NwyHTgutV4XXtccOtgSDE3q1sv0RiW";      // ЗАМЕНИТЕ НА СВОЙ
+
+        // === ОГРАНИЧЕНИЕ НА ПУБЛИКАЦИЮ ===
+        const PUBLISH_COOLDOWN = 60 * 60 * 1000; // 1 час
+
+        function canPublish() {
+            const lastPublish = localStorage.getItem('last_script_publish');
+            if (!lastPublish) return true;
+            const now = Date.now();
+            return (now - parseInt(lastPublish)) >= PUBLISH_COOLDOWN;
+        }
+
+        function setLastPublishTime() {
+            localStorage.setItem('last_script_publish', Date.now().toString());
+        }
+
+        function getRemainingTime() {
+            const lastPublish = localStorage.getItem('last_script_publish');
+            if (!lastPublish) return 0;
+            const elapsed = Date.now() - parseInt(lastPublish);
+            const remaining = PUBLISH_COOLDOWN - elapsed;
+            return Math.max(0, remaining);
+        }
+
+        function formatTime(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${minutes} мин ${seconds} сек`;
+        }
 
         // === РАБОЧАЯ СИСТЕМА ЛАЙКОВ ЧЕРЕЗ CountAPI ===
         const likeBtn = document.getElementById('like-btn');
@@ -1015,6 +1050,12 @@
 
         // === ПУБЛИКАЦИЯ СКРИПТА ===
         async function publishScript() {
+            if (!canPublish()) {
+                const remaining = getRemainingTime();
+                alert(`⏳ Вы можете опубликовать новый скрипт через ${formatTime(remaining)}\n\nЭто ограничение действует на вашем устройстве.`);
+                return;
+            }
+            
             const name = document.getElementById('script-name').value.trim();
             const game = document.getElementById('script-game').value.trim();
             const code = document.getElementById('script-code').value.trim();
@@ -1034,7 +1075,7 @@
             
             try {
                 const scripts = await fetchScripts();
-                const newId = Date.now(); // Уникальный ID
+                const newId = Date.now();
                 
                 const newScript = {
                     id: newId,
@@ -1044,22 +1085,38 @@
                     timestamp: Date.now()
                 };
                 
-                scripts.unshift(newScript); // Добавляем в начало
+                scripts.unshift(newScript);
                 
                 const success = await saveScripts(scripts);
                 
                 if (success) {
+                    setLastPublishTime();
                     messageEl.innerHTML = '<div class="text-green-400">✅ Скрипт успешно опубликован!</div>';
                     document.getElementById('script-name').value = '';
                     document.getElementById('script-game').value = '';
                     document.getElementById('script-code').value = '';
-                    loadAndRenderPublicScripts(); // Обновляем список
+                    loadAndRenderPublicScripts();
+                    updateCooldownDisplay();
                 } else {
                     throw new Error('Не удалось сохранить');
                 }
             } catch (err) {
                 console.error("Ошибка публикации:", err);
                 messageEl.innerHTML = '<div class="error">❌ Не удалось опубликовать скрипт. Проверьте BIN_ID и API_KEY.</div>';
+            }
+        }
+
+        // === ОБНОВЛЕНИЕ ОТОБРАЖЕНИЯ ТАЙМЕРА ===
+        function updateCooldownDisplay() {
+            const cooldownEl = document.getElementById('publish-cooldown');
+            if (!cooldownEl) return;
+            
+            if (!canPublish()) {
+                const remaining = getRemainingTime();
+                cooldownEl.innerHTML = `<div class="cooldown">⏳ Следующая публикация доступна через: <strong>${formatTime(remaining)}</strong></div>`;
+                setTimeout(updateCooldownDisplay, 1000);
+            } else {
+                cooldownEl.innerHTML = '';
             }
         }
 
@@ -1218,34 +1275,36 @@
             }
         }
 
+        // === СОЗДАНИЕ ФОРМЫ ПУБЛИКАЦИИ ===
+        function createPublishForm() {
+            if (document.getElementById('publish-section')) return;
+            
+            const publishSection = document.createElement('div');
+            publishSection.id = 'publish-section';
+            publishSection.className = 'publish-form';
+            publishSection.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4 text-center">Опубликовать свой скрипт</h2>
+                <input type="text" id="script-name" placeholder="Название скрипта*" required />
+                <input type="text" id="script-game" placeholder="Игра (оставьте пустым для универсального)" />
+                <textarea id="script-code" placeholder="Ваш скрипт (loadstring код)*" required></textarea>
+                <div id="publish-cooldown"></div>
+                <button id="publish-btn">Опубликовать скрипт</button>
+                <div id="publish-message" class="mt-3 text-center"></div>
+            `;
+            document.querySelector('#scripts-container').after(publishSection);
+            
+            document.getElementById('publish-btn').addEventListener('click', publishScript);
+            updateCooldownDisplay();
+        }
+
         // === НАВИГАЦИЯ ===
         const mainPage = document.getElementById('main-page');
         const exploitPage = document.getElementById('exploit-page');
         const forumPage = document.getElementById('forum-page');
         const keyPage = document.getElementById('key-page');
 
-        // Кнопки перехода на страницу публикации
         document.getElementById('go-to-publish-btn').addEventListener('click', () => {
-            // Создаем форму публикации, если её нет
-            if (!document.getElementById('publish-section')) {
-                const publishSection = document.createElement('div');
-                publishSection.id = 'publish-section';
-                publishSection.className = 'publish-form';
-                publishSection.innerHTML = `
-                    <h2 class="text-2xl font-bold mb-4 text-center">Опубликовать свой скрипт</h2>
-                    <input type="text" id="script-name" placeholder="Название скрипта*" required />
-                    <input type="text" id="script-game" placeholder="Игра (оставьте пустым для универсального)" />
-                    <textarea id="script-code" placeholder="Ваш скрипт (loadstring код)*" required></textarea>
-                    <button id="publish-btn">Опубликовать скрипт</button>
-                    <div id="publish-message" class="mt-3 text-center"></div>
-                `;
-                document.querySelector('#scripts-container').after(publishSection);
-                
-                // Настраиваем кнопку публикации
-                document.getElementById('publish-btn').addEventListener('click', publishScript);
-            }
-            
-            // Прокручиваем к форме
+            createPublishForm();
             document.getElementById('publish-section').scrollIntoView({ behavior: 'smooth' });
         });
 
@@ -1254,8 +1313,6 @@
             exploitPage.classList.add('hidden');
             forumPage.classList.add('hidden');
             keyPage.classList.add('hidden');
-            
-            // Ждём рендеринга, затем прокручиваем
             setTimeout(() => {
                 document.getElementById('go-to-publish-btn').click();
             }, 100);
@@ -1266,7 +1323,6 @@
             exploitPage.classList.add('hidden');
             forumPage.classList.add('hidden');
             keyPage.classList.add('hidden');
-            
             setTimeout(() => {
                 document.getElementById('go-to-publish-btn').click();
             }, 100);
@@ -1362,7 +1418,7 @@
         setupSearch();
         setupCaptcha();
         createSnowflakes();
-        loadAndRenderPublicScripts(); // Загружаем публичные скрипты
+        loadAndRenderPublicScripts();
     </script>
 </body>
 </html>
@@ -1370,7 +1426,7 @@
 
 
               <script>
-                              const SCRIPTS_BIN_ID = "YOUR_BIN_ID_HERE";
+                              const SCRIPTS_BIN_ID = "6978b3cdd0ea881f4089dfaf";
 const API_KEY = "$2a$10$oaeI6r7LdYpRTmu8Vn5g0e4NwyHTgutV4XXtccOtgSDE3q1sv0RiW";
 
 
